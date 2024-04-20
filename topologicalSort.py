@@ -1,4 +1,4 @@
-def topological_sort(graph):
+def topologicalSort(graph):
     def removeEdge(u, v):
         graph[u].remove(v)
 

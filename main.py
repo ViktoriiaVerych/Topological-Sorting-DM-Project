@@ -1,9 +1,11 @@
 from buildGraph import generateRandomGraph
 from dfsTopologicalSort import dfsTopologicalSort
-from topologicalSort import topological_sort
+from topologicalSort import topologicalSort
+
 
 def isValid(s):
     return s.strip() and not any(char.isdigit() or char in {'-', '+', '.', ' '} for char in s)
+
 
 def main():
     while True:
@@ -26,14 +28,16 @@ def main():
 
         algorithm = input(
             "--------------------------------\n"
-            "Choose the type of sorting:\n - For topological sort, enter \"TS\".\n - For DFS topological sort, enter \"DS\": ").upper()
+            "Choose the type of sorting:\n - For topological sort, enter \"TS\".\n - For DFS topological sort, "
+            "enter \"DS\": ").upper()
         while not isValid(algorithm) or algorithm not in {"TS", "DS"}:
             print("Invalid input. Choose topological sort (TS) or DFS topological sort (DS).")
             algorithm = input(
-                "Choose the type of sorting:\n - For topological sort, enter \"TS\".\n - For DFS topological sort, enter \"DS\": ").upper()
+                "Choose the type of sorting:\n - For topological sort, enter \"TS\".\n - For DFS topological sort, "
+                "enter \"DS\": ").upper()
 
         if algorithm == "TS":
-            sortedOrder = topological_sort(graph)
+            sortedOrder = topologicalSort(graph)
         elif algorithm == "DS":
             sortedOrder = dfsTopologicalSort(graph)
 
