@@ -43,7 +43,8 @@ def main():
 
         pos = nx.spring_layout(G, seed=128)
         nx.draw(G, pos, with_labels=True, node_size=900, node_color='black', font_size=10,
-                font_color='white',  arrows=True, edge_color='black')
+                font_color='white', arrows=True, edge_color='black')
+        plt.savefig('g.png')
         plt.show()
 
         # Show the graph in matrix representation
@@ -99,6 +100,12 @@ def main():
         print("Start:", start)
         print("End:", end)
         print("Execution time:", end - start, "sec")
+
+        with open('experiments.txt', 'a') as f:
+            f.write("     \n")
+            f.write(f"Size: {vertices}\n")
+            f.write(f"Density: {density}\n")
+            f.write(f"Execution time: {end - start} sec\n")
 
         print("  ")
 
