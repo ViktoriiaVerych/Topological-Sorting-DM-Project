@@ -3,6 +3,8 @@ from generateGraph import generateRandomGraph
 from dfsTopologicalSort import dfsTopologicalSort
 from validInput import isValid, isNonZeroPositive, floatValid
 from buildGraph import Graph
+import matplotlib.pyplot as plt
+import networkx as nx
 
 
 def main():
@@ -32,6 +34,17 @@ def main():
 
         # Generate the graph using Erdős–Rényi model
         graph = generateRandomGraph(vertices, density)
+
+        # Using networkx to visualize the generated graph
+        G = nx.DiGraph()
+        for u, neighbors in enumerate(graph):
+            for v in neighbors:
+                G.add_edge(u, v)
+
+        pos = nx.spring_layout(G, seed=128)
+        nx.draw(G, pos, with_labels=True, node_size=900, node_color='black', font_size=10,
+                font_color='white',  arrows=True, edge_color='black')
+        plt.show()
 
         # Show the graph in matrix representation
         if graphRepresent == "Matrix" or graphRepresent == "M":
@@ -86,6 +99,7 @@ def main():
         print("Start:", start)
         print("End:", end)
         print("Execution time:", end - start, "sec")
+
         print("  ")
 
         # Ask the user if they want to repeat
