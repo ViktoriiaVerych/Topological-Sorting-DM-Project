@@ -41,6 +41,15 @@ def main():
                     graphMatrix.addEdge(u, v)
             graphMatrix.showMatrix()
 
+        # Ask the user if they want to switch the representation to list
+        switchRepresent = input("Do you want to generate the graph in list representation? \n").capitalize()
+        if switchRepresent == "Y" or switchRepresent == "Yes":
+            graphList = GraphList(vertices)
+            for u in range(vertices):
+                for v in graph[u]:
+                    graphList.addEdge(u, v)
+            graphList.showList()
+
         # Show the graph in list representation
         elif graphRepresent == "List" or graphRepresent == "L":
             graphList = GraphList(vertices)
@@ -49,8 +58,17 @@ def main():
                     graphList.addEdge(u, v)
             graphList.showList()
 
+            # Ask the user if they want to switch the representation to matrix
+            switchRepresent = input("Do you want to generate the graph in matrix representation? \n").capitalize()
+            if switchRepresent == "Y" or switchRepresent == "Yes":
+                graphMatrix = GraphMatrix(vertices)
+                for u in range(vertices):
+                    for v in graph[u]:
+                        graphMatrix.addEdge(u, v)
+                graphMatrix.showMatrix()
+
         print("--------------------------------\n")
-        print("Generated graph using Erdős–Rényi model:", graph)
+        # print("Generated graph using Erdős–Rényi model:", graph)
         edgesTotal = sum(len(adjList) for adjList in graph)
         print(f"G = <{{Vertices: {vertices} Edges: {edgesTotal}}}>")
 
