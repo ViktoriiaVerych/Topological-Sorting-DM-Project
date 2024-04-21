@@ -44,7 +44,7 @@ def main():
         pos = nx.spring_layout(G, seed=128)
         nx.draw(G, pos, with_labels=True, node_size=900, node_color='black', font_size=10,
                 font_color='white', arrows=True, edge_color='black')
-        #plt.savefig('g.png')
+        # plt.savefig('g.png')
         plt.show()
 
         # Show the graph in matrix representation
@@ -116,7 +116,5 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-# ----------------------------------------------------------------
 
 
