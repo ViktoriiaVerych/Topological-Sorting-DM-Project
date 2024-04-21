@@ -9,4 +9,3 @@ def generateRandomGraph(vertices, density):
             if u != v and random.random() < density:
                 graph[u].append(v)
     return graph
-

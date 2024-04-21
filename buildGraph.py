@@ -5,6 +5,7 @@ class Graph:
         self.matrix = [[0] * vertices for _ in range(vertices)]
 
     def addEdge(self, u, v):
+
         # Add the edge to list
         self.adjList[u].append(v)
         self.adjList[v].append(u)
@@ -20,11 +21,13 @@ class Graph:
         return self.matrix
 
     def showList(self):
+
         # Show the adjacency list
         for vertex, neighbors in enumerate(self.adjList):
             print(f"V_{vertex}: {neighbors}")
 
     def showMatrix(self):
+
         # Show the adjacency matrix
         print("   ", end="")
         for vertex in range(self.vertices):

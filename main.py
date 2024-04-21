@@ -67,8 +67,9 @@ def main():
                         graphLM.addEdge(u, v)
                 graphLM.showMatrix()
 
-        print("--------------------------------\n")
+        print("  ")
 
+        # Count the total amount of vertices & edges in the graph. Print it out
         edges_total = sum(len(adjList) for adjList in graph)
         print(f"G = <{{Vertices: {vertices} Edges: {edges_total}}}>")
 
@@ -81,11 +82,11 @@ def main():
 
         # Show the topological sort, execution time
         print("Proposed topological sorting:", sorted_order)
-        print(" ")
+        print("  ")
         print("Start:", start)
         print("End:", end)
         print("Execution time:", end - start, "sec")
-        print(" ")
+        print("  ")
 
         # Ask the user if they want to repeat
         repeat = input("Do you want to repeat?: \n").upper()
