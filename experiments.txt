@@ -1,0 +1,7 @@
+Size: 10
+Density: 0.1
+Execution time: 0.0 sec
+     
+Size: 100
+Density: 0.1
+Execution time: 0.0 sec
