@@ -101,6 +101,7 @@ def main():
         print("End:", end)
         print("Execution time:", end - start, "sec")
 
+        # Write the experiment to the file experiments.txt
         with open('experiments.txt', 'a') as f:
             f.write("     \n")
             f.write(f"Size: {vertices}\n")
