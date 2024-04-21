@@ -1,6 +1,6 @@
 import time
-from GraphList import GraphList
-from GraphMatrix import GraphMatrix
+from buildGraphList import GraphList
+from buildGraphMatrix import GraphMatrix
 from buildGraph import generateRandomGraph
 from dfsTopologicalSort import dfsTopologicalSort
 from validInput import isValid, isNonZeroPositive, floatValid

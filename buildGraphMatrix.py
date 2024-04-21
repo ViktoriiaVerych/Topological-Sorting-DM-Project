@@ -10,6 +10,9 @@ class GraphMatrix:
         self.matrix[u][v] = 1
         self.matrix[v][u] = 1
 
+    def getGraph(self):
+        return self.matrix
+
     def showMatrix(self):
         # Print the matrix
         print("   ", end="")
