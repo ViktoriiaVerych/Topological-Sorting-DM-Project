@@ -1,48 +1,75 @@
+import time
+from GraphList import GraphList
+from GraphMatrix import GraphMatrix
 from buildGraph import generateRandomGraph
 from dfsTopologicalSort import dfsTopologicalSort
-from topologicalSort import topologicalSort
-
-
-def isValid(s):
-    return s.strip() and not any(char.isdigit() or char in {'-', '+', '.', ' '} for char in s)
+from validInput import isValid, isNonZeroPositive, floatValid
 
 
 def main():
     while True:
-        vertices = input("Enter the number of vertices: ")
-        while not vertices.isdigit() or int(vertices) <= 0:
-            print("Invalid input. The number of vertices must be a positive integer.")
-            vertices = input("Enter the number of vertices: ")
+        # Number of vertices from user's input
+        vertices = int(isValid("Enter the number of vertices: ",
+                               isNonZeroPositive,
+                               "Invalid input. The number of vertices must be a positive integer."))
 
-        density = input("Enter the density (0-1): ")
-        while not all(char.isdigit() or char == '.' for char in density) or float(density) <= 0 or float(density) > 1:
-            print("Invalid input. Density must be a number between 0 and 1.")
-            density = input("Enter the density (0-1): ")
+        # Density from user's input
+        density = float(isValid("Enter the density (0-1): ",
+                                floatValid,
+                                "Invalid input. Density must be a number between 0 and 1."))
 
-        vertices = int(vertices)
-        density = float(density)
+        print("  ")
+        graphRepresent = input("Choose graph representation: \n"
+                               "   - For matrix, enter \"Matrix\".\n"
+                               "   - For list, enter \"List\".\n").capitalize()
+        print("  ")
+        # Ask the user what graph representation to show
+        while graphRepresent not in ('Matrix', 'List', 'M', 'L'):
+            print("Invalid input. Enter Matrix or List.")
+            graphRepresent = input("Choose graph representation: \n"
+                                   "- For matrix, enter \"Matrix\".\n"
+                                   "- For list, enter \"List\".\n").capitalize()
 
+        # Generate the graph using Erdős–Rényi model
         graph = generateRandomGraph(vertices, density)
+
+        # Show the graph in matrix representation
+        if graphRepresent == "Matrix" or graphRepresent == "M":
+            graphMatrix = GraphMatrix(vertices)
+            for u in range(vertices):
+                for v in graph[u]:
+                    graphMatrix.addEdge(u, v)
+            graphMatrix.showMatrix()
+
+        # Show the graph in list representation
+        elif graphRepresent == "List" or graphRepresent == "L":
+            graphList = GraphList(vertices)
+            for u in range(vertices):
+                for v in graph[u]:
+                    graphList.addEdge(u, v)
+            graphList.showList()
+
         print("--------------------------------\n")
-        print("Generated graph:", graph)
+        print("Generated graph using Erdős–Rényi model:", graph)
+        edgesTotal = sum(len(adjList) for adjList in graph)
+        print(f"G = <{{Vertices: {vertices} Edges: {edgesTotal}}}>")
 
-        algorithm = input(
-            "--------------------------------\n"
-            "Choose the type of sorting:\n - For topological sort, enter \"TS\".\n - For DFS topological sort, "
-            "enter \"DS\": ").upper()
-        while not isValid(algorithm) or algorithm not in {"TS", "DS"}:
-            print("Invalid input. Choose topological sort (TS) or DFS topological sort (DS).")
-            algorithm = input(
-                "Choose the type of sorting:\n - For topological sort, enter \"TS\".\n - For DFS topological sort, "
-                "enter \"DS\": ").upper()
+        # Measure execution time
+        start = time.time()
 
-        if algorithm == "TS":
-            sortedOrder = topologicalSort(graph)
-        elif algorithm == "DS":
-            sortedOrder = dfsTopologicalSort(graph)
+        # Do the topological sort
+        sortedOrder = dfsTopologicalSort(graph)
+        end = time.time()
 
+        # Show the topological sort, execution time
         print("Proposed topological sorting:", sortedOrder)
+        print(" ")
+        print("Start:", start)
+        print("End:", end)
+        print("Execution time:", end - start, "sec")
+        print(" ")
 
+        # Ask the user if they want to repeat
         repeat = input("Do you want to repeat? : ").upper()
         if repeat != "YES" and repeat != "Y":
             break

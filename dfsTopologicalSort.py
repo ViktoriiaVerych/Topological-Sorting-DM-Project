@@ -4,16 +4,14 @@ def dfsTopologicalSort(graph):
         for neighbor in graph[node]:
             if not visited[neighbor]:
                 dfs(neighbor)
-        result_stack.append(node)
-
+        resultStack.append(node)
+    # Variables initialized
     numberVertices = len(graph)
     visited = [False] * numberVertices
-    result_stack = []
-
+    resultStack = []
+    # Do DFS travers for each unvisited vertex
     for vertex in range(numberVertices):
         if not visited[vertex]:
             dfs(vertex)
-
-    return result_stack[::-1]
-
-
+    # Return the sorted reversed order
+    return resultStack[::-1]
