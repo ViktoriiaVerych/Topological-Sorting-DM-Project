@@ -44,7 +44,7 @@ def main():
         pos = nx.spring_layout(G, seed=128)
         nx.draw(G, pos, with_labels=True, node_size=900, node_color='black', font_size=10,
                 font_color='white', arrows=True, edge_color='black')
-        plt.savefig('g.png')
+        #plt.savefig('g.png')
         plt.show()
 
         # Show the graph in matrix representation
@@ -89,8 +89,6 @@ def main():
 
         # Measure execution time
         start = time.time()
-
-        # Do the topological sort
         sorted_order = dfsTopologicalSort(graph)
         end = time.time()
 
@@ -99,7 +97,7 @@ def main():
         print("  ")
         print("Start:", start)
         print("End:", end)
-        print("Execution time:", end - start, "sec")
+        print(f"Execution time: {(end - start) * 1000:.6f} milliseconds" )
 
         # Write the experiment to the file experiments.txt
         with open('experiments.txt', 'a') as f:
@@ -118,3 +116,7 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+# ----------------------------------------------------------------
+
+

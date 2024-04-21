@@ -1,3 +1,6 @@
+import time
+
+
 def dfsTopologicalSort(graph):
     def dfs(node):
         visited[node] = True
@@ -11,10 +14,16 @@ def dfsTopologicalSort(graph):
     visited = [False] * numberVertices
     resultStack = []
 
+    start = time.time()
+
     # Do DFS travers for each unvisited vertex
     for vertex in range(numberVertices):
         if not visited[vertex]:
             dfs(vertex)
 
+
+    end = time.time()
+    elapsedTime = end - start
     # Return the sorted reversed order
-    return resultStack[::-1]
+    return resultStack[::-1], elapsedTime
+
